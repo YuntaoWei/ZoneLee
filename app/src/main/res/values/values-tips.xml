@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="username_password_null">User name and passwrod can not be null</string>
+    <string name="password_hint">6-15 characters,case sensitive</string>
+    <string name="phonenumber_hint">please input your phone number or email address</string>
+    <string name="verify_code_hint">please input verification code</string>
+    <string name="regist_tips">Click "Got verification code" button, the agreed the registration agreement</string>
+    <string name="regist_error_tips">Please input the all message and do regist</string>
+</resources>

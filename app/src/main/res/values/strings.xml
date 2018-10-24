@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">ZoneLee</string>
+    <string name="btn_regist">Regist</string>
+    <string name="btn_login">Login</string>
+    <string name="get_verification_code">Get verification code</string>
+    <string name="verification_code">Verification code</string>
+    <string name="password">Password</string>
+    <string name="btn_regist_login">Regist and login</string>
+</resources>

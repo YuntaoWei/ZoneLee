@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="username_password_null">"用户名和密码不能为空"</string>
+    <string name="password_hint">"6-15个字符，区分大小写"</string>
+    <string name="phonenumber_hint">"请输入常用手机号码或者邮箱账号"</string>
+    <string name="verify_code_hint">"请输入验证码"</string>
+    <string name="regist_tips">"点击“获取验证码”按钮，即表示同意注册协议"</string>
+    <string name="regist_error_tips">"请完善注册资料再进行注册操作"</string>
+</resources>
