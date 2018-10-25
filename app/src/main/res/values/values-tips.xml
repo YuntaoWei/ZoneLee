@@ -6,4 +6,12 @@
     <string name="verify_code_hint">please input verification code</string>
     <string name="regist_tips">Click "Got verification code" button, the agreed the registration agreement</string>
     <string name="regist_error_tips">Please input the all message and do regist</string>
+    <string name="email_error_tips">Email is null or format error!</string>
+    <string name="login_failed">Invalid user name or password</string>
+    <string name="login_success">Access successfully</string>
+    <string name="network_not_access">Can not access network</string>
+    <string name="regist_success">Regist successed</string>
+    <string name="regist_failed">Regist failed</string>
+    <string name="verify_count_tips">"after %1d seconds can redo"</string>
+    <string name="got_verification_code_failed">Got verification code failed.</string>
 </resources>

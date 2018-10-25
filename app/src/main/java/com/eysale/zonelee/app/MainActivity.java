@@ -12,10 +12,15 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.eysale.zonelee.R;
+import com.eysale.zonelee.app.view.MainActivityDelegate;
+import com.eysale.zonelee.util.NetWorkUtils;
 import com.eysale.zonelee.util.RxUtils;
+import com.eysale.zonelee.util.StartUtils;
+import com.kymjs.frame.presenter.ActivityPresenter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.functions.Consumer;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, View.OnFocusChangeListener {
 
@@ -63,10 +68,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     return;
                 }
 
+                if(!NetWorkUtils.canAccessNetwork(this)) {
+                    Toast.makeText(this, R.string.network_not_access, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                RxUtils.login(user, password, new Consumer<String>() {
+                    @Override
+                    public void accept(String s) throws Exception {
+
+                    }
+                });
                 break;
 
             case R.id.login_bt_regist:
-                RxUtils.login("", "", null);
                 startActivity(new Intent(this, RegistActivity.class));
                 break;
 
@@ -100,6 +115,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             passwordLayout.setBackgroundResource(R.drawable.login_layout_select);
             imgPassword.setImageResource(R.mipmap.password_select);
         }
+    }
+
+    private void loginSuccess() {
+        Toast.makeText(this, R.string.login_success, Toast.LENGTH_SHORT).show();
+        StartUtils.startToMainPage(this);
+    }
+
+    private void loginFailed() {
+        Toast.makeText(this, R.string.login_failed, Toast.LENGTH_SHORT).show();
     }
 
 }

@@ -6,4 +6,5 @@
     <string name="verification_code">Verification code</string>
     <string name="password">Password</string>
     <string name="btn_regist_login">Regist and login</string>
+    <string name="title_activity_content">ContentActivity</string>
 </resources>

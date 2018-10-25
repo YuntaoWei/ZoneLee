@@ -31,7 +31,7 @@
         <EditText
             android:id="@+id/et_phonenumber"
             android:layout_weight="1"
-            android:inputType="number"
+            android:inputType="textEmailAddress"
             android:maxLength="11"
             android:hint="@string/phonenumber_hint"
             android:layout_gravity="center_vertical"
