@@ -45,6 +45,8 @@ public class RegistActivity extends AppCompatActivity implements View.OnClickLis
             updateCount--;
             if(updateCount < 0) {
                 updateCount = 60;
+                tvGotVerify.setEnabled(true);
+                tvGotVerify.setText(R.string.get_verification_code);
                 return;
             }
 
@@ -133,6 +135,7 @@ public class RegistActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void gotVerificationCodeSuccess() {
+        tvGotVerify.setEnabled(false);
         mainHandler.postDelayed(updateVerificationCodeTextView, 1000);
     }
 
