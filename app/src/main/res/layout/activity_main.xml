@@ -9,8 +9,10 @@
 
     <ImageView
         android:id="@+id/top_layout"
+        android:src="@mipmap/timg"
+        android:scaleType="centerCrop"
         android:layout_width="match_parent"
-        android:layout_height="100dp" />
+        android:layout_height="150dp" />
 
     <LinearLayout
         android:id="@+id/username_layout"

@@ -12,6 +12,6 @@
     <string name="network_not_access">Can not access network</string>
     <string name="regist_success">Regist successed</string>
     <string name="regist_failed">Regist failed</string>
-    <string name="verify_count_tips">"after %1d seconds can redo"</string>
+    <string name="verify_count_tips">"%1ds"</string>
     <string name="got_verification_code_failed">Got verification code failed.</string>
 </resources>

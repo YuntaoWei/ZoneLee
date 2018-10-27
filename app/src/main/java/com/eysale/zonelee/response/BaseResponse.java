@@ -1,23 +1,23 @@
 package com.eysale.zonelee.response;
 
-public class RegisterResponse {
+public class BaseResponse {
 
-    public String state;
+    public String code;
     public String message;
 
-    public RegisterResponse() {}
+    public BaseResponse() {}
 
-    public RegisterResponse(String state, String message) {
-        this.state = state;
+    public BaseResponse(String code, String message) {
+        this.code = code;
         this.message = message;
     }
 
-    public String getState() {
-        return state;
+    public String getCode() {
+        return code;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getMessage() {
@@ -31,7 +31,7 @@ public class RegisterResponse {
     @Override
     public String toString() {
         return "RegisterResponse{" +
-                "state='" + state + '\'' +
+                "code='" + code + '\'' +
                 ", message='" + message + '\'' +
                 '}';
     }

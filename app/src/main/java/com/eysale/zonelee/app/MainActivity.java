@@ -12,17 +12,19 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.eysale.zonelee.R;
-import com.eysale.zonelee.app.view.MainActivityDelegate;
+import com.eysale.zonelee.app.base.BaseMainActivity;
+import com.eysale.zonelee.bean.User;
+import com.eysale.zonelee.response.LoginResponse;
+import com.eysale.zonelee.util.LogPrinter;
 import com.eysale.zonelee.util.NetWorkUtils;
-import com.eysale.zonelee.util.RxUtils;
-import com.eysale.zonelee.util.StartUtils;
-import com.kymjs.frame.presenter.ActivityPresenter;
+import com.eysale.zonelee.request.RxUtils;
+import com.eysale.zonelee.request.StartUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.functions.Consumer;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, View.OnFocusChangeListener {
+public class MainActivity extends BaseMainActivity implements View.OnClickListener, View.OnFocusChangeListener {
 
     @BindView(R.id.login_bt_login)
     Button btnLogin;
@@ -63,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.login_bt_login:
                 String user = etUserName.getText().toString();
                 String password = etPassword.getText().toString();
+                LogPrinter.i("ttt", "Login clicked : " + user + "   " + password);
                 if(TextUtils.isEmpty(user) || TextUtils.isEmpty(password)) {
                     Toast.makeText(this, R.string.username_password_null, Toast.LENGTH_SHORT).show();
                     return;
@@ -73,9 +76,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     return;
                 }
 
-                RxUtils.login(user, password, new Consumer<String>() {
+                RxUtils.login(user, password, new Consumer<LoginResponse>() {
                     @Override
-                    public void accept(String s) throws Exception {
+                    public void accept(LoginResponse u) throws Exception {
+                        if(u != null && u.code.equals("success")) {
+                            loginSuccess(u);
+                        } else {
+                            loginFailed(u == null ? "error" : u.message);
+                        }
 
                     }
                 });
@@ -115,15 +123,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             passwordLayout.setBackgroundResource(R.drawable.login_layout_select);
             imgPassword.setImageResource(R.mipmap.password_select);
         }
-    }
-
-    private void loginSuccess() {
-        Toast.makeText(this, R.string.login_success, Toast.LENGTH_SHORT).show();
-        StartUtils.startToMainPage(this);
-    }
-
-    private void loginFailed() {
-        Toast.makeText(this, R.string.login_failed, Toast.LENGTH_SHORT).show();
     }
 
 }

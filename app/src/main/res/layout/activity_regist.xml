@@ -8,8 +8,10 @@
 
     <ImageView
         android:id="@+id/top_layout"
+        android:src="@mipmap/timg"
+        android:scaleType="centerCrop"
         android:layout_width="match_parent"
-        android:layout_height="100dp" />
+        android:layout_height="150dp" />
 
     <LinearLayout
         android:id="@+id/number_layout"
@@ -32,7 +34,7 @@
             android:id="@+id/et_phonenumber"
             android:layout_weight="1"
             android:inputType="textEmailAddress"
-            android:maxLength="11"
+            android:maxLines="1"
             android:hint="@string/phonenumber_hint"
             android:layout_gravity="center_vertical"
             android:textSize="@dimen/small_font_size"

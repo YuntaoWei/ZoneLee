@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 public class BasicUtil {
     //email format verify.
     public static final String REGEX_EMAIL = "^([a-z0-9A-Z]+[-|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";
+    public static final String REGEX_EMAIL1 = "^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*\\.[a-zA-Z0-9]{2,6}$";
 
     public static final String REGEX_USERNAME = "^[a-zA-Z]\\w{5,20}$";
 
@@ -26,6 +27,6 @@ public class BasicUtil {
         if(TextUtils.isEmpty(email)) {
             return false;
         }
-        return Pattern.matches(REGEX_EMAIL, email);
+        return Pattern.matches(REGEX_EMAIL1, email);
     }
 }

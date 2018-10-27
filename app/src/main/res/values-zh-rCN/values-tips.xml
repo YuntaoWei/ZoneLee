@@ -12,6 +12,6 @@
     <string name="network_not_access">"无网络访问，请连接网络"</string>
     <string name="regist_success">"注册成功"</string>
     <string name="regist_failed">"注册失败"</string>
-    <string name="verify_count_tips">"%1d秒后可再次获取验证码"</string>
+    <string name="verify_count_tips">"%1d秒"</string>
     <string name="got_verification_code_failed">"获取验证码失败"</string>
 </resources>
