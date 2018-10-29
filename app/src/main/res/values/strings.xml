@@ -1,10 +1,26 @@
 <resources>
-    <string name="app_name">ZoneLee</string>
+    <!--<string name="app_name">ZoneLee</string>
     <string name="btn_regist">Regist</string>
     <string name="btn_login">Login</string>
     <string name="get_verification_code">Get verification code</string>
     <string name="verification_code">Verification code</string>
     <string name="password">Password</string>
     <string name="btn_regist_login">Regist and login</string>
-    <string name="title_activity_content">ContentActivity</string>
+    <string name="title_activity_content">ContentActivity</string>-->
+    <string name="app_name">众里</string>
+    <string name="btn_regist">"注册"</string>
+    <string name="btn_login">"登录"</string>
+    <string name="get_verification_code">"获取验证码"</string>
+    <string name="verification_code">验证码</string>
+    <string name="password">"密码"</string>
+    <string name="btn_regist_login">"完成注册并登录"</string>
+    <string name="title_activity_content">"主页"</string>
+    <string name="bottombar_home">"发现"</string>
+    <string name="bottombar_msg">"排行"</string>
+    <string name="bottombar_follow">"关注"</string>
+    <string name="bottombar_fresh">"猎奇"</string>
+    <string name="bottombar_user">"我的"</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

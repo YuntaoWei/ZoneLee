@@ -1,36 +1,38 @@
 package com.eysale.zonelee.app;
 
-import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.eysale.zonelee.R;
+import com.eysale.zonelee.app.view.ContentActivityDelegate;
 import com.eysale.zonelee.request.RxUtils;
 import com.eysale.zonelee.response.BaseResponse;
+import com.kymjs.frame.presenter.ActivityPresenter;
 
 import io.reactivex.functions.Consumer;
 
-public class ContentActivity extends AppCompatActivity {
+public class ContentActivity extends ActivityPresenter<ContentActivityDelegate> implements View.OnClickListener {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_content);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+    protected void bindEvenListener() {
+        viewDelegate.setOnClickListener(this,
+                R.id.btn_content_found,//发现
+                R.id.btn_content_follow,//关注
+                R.id.btn_content_ranking,//排行
+                R.id.btn_content_fresh,//猎奇
+                R.id.btn_content_user);//我的
+    }
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                loginOut();
-                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();*/
-            }
-        });
+    @Override
+    protected Class<ContentActivityDelegate> getDelegateClass() {
+        return ContentActivityDelegate.class;
+    }
+
+    @Override
+    public void onClick(View v) {
+        loginOut();
+        Snackbar.make(v, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();
     }
 
     private void loginOut() {
@@ -38,7 +40,7 @@ public class ContentActivity extends AppCompatActivity {
         RxUtils.loginOut(app.getCurrentUser().userId, new Consumer<BaseResponse>() {
             @Override
             public void accept(BaseResponse baseResponse) throws Exception {
-                if(baseResponse != null && baseResponse.code.equals("success")) {
+                if (baseResponse != null && baseResponse.code.equals("success")) {
                     logoutSuccess();
                 } else {
                     logoutException();
@@ -58,5 +60,4 @@ public class ContentActivity extends AppCompatActivity {
         app.unregistUser();
         finish();
     }
-
 }
