@@ -52,7 +52,7 @@
             android:layout_weight="1" />
 
         <Button
-            android:id="@+id/btn_content_user"
+            android:id="@+id/btn_content_fresh"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="@string/bottombar_fresh"
@@ -62,7 +62,7 @@
             android:layout_weight="1" />
 
         <Button
-            android:id="@+id/btn_content_fresh"
+            android:id="@+id/btn_content_user"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="@string/bottombar_user"

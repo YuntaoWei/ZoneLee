@@ -16,10 +16,13 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * 网络访问封装类，用于调用retrofit + okhttp的接口{----${https://www.eysale.com/}-----}
+ */
 class NetworkAccessUtil {
 
     private static NetworkAccessUtil instance;
-    private final String baseUrl = "https://www.eysale.com/";
+    private final String baseUrl = "****";
     private OkHttpClient mClient;
 
     private NetworkAccessUtil() {}

@@ -12,9 +12,10 @@ import com.eysale.zonelee.R;
 import com.eysale.zonelee.app.Adapter.ContentViewPageAdapter;
 import com.eysale.zonelee.app.fragments.PageUtil;
 import com.eysale.zonelee.app.ui.ContentActivityToolbar;
+import com.eysale.zonelee.util.LogPrinter;
 import com.kymjs.frame.view.AppDelegate;
 
-public class ContentActivityDelegate extends AppDelegate {
+public class ContentActivityDelegate extends AppDelegate implements ViewPager.OnPageChangeListener {
 
     private ViewPager contentViewPager;
     private ContentViewPageAdapter pagerAdapter;
@@ -37,6 +38,7 @@ public class ContentActivityDelegate extends AppDelegate {
         contentViewPager.setAdapter(pagerAdapter);
         contentViewPager.setCurrentItem(PageUtil.INDEX_FOUND);
         mRes = getActivity().getResources();
+        addOnPageChangeListener(this);
     }
 
     public void addOnPageChangeListener(ViewPager.OnPageChangeListener vpcl) {
@@ -51,26 +53,26 @@ public class ContentActivityDelegate extends AppDelegate {
         return ContentActivityToolbar.getToolBar(getToolbar());
     }
 
-    public void changeButtonSelectedStatus(int id) {
+    private void changeButtonSelectedStatus(int page) {
         resetButtonSelectedStatus();
-        switch (id) {
-            case R.id.btn_content_found:
+        switch (page) {
+            case PageUtil.INDEX_FOUND:
                 setButtonSelectedStatus((Button) get(R.id.btn_content_found), R.mipmap.ic_found_select, true);
                 break;
 
-            case R.id.btn_content_follow:
+            case PageUtil.INDEX_RANKING:
                 setButtonSelectedStatus((Button) get(R.id.btn_content_ranking), R.mipmap.ic_ranking_selected, true);
                 break;
 
-            case R.id.btn_content_ranking:
+            case PageUtil.INDEX_FOLLOW:
                 setButtonSelectedStatus((Button) get(R.id.btn_content_follow), R.mipmap.ic_follow_select, true);
                 break;
 
-            case R.id.btn_content_fresh:
+            case PageUtil.INDEX_FRESH:
                 setButtonSelectedStatus((Button) get(R.id.btn_content_fresh), R.mipmap.ic_fresh_selected, true);
                 break;
 
-            case R.id.btn_content_user:
+            case PageUtil.INDEX_USER:
                 setButtonSelectedStatus((Button) get(R.id.btn_content_user), R.mipmap.ic_user_selected, true);
                 break;
         }
@@ -94,4 +96,19 @@ public class ContentActivityDelegate extends AppDelegate {
             btn.setTextColor(mRes.getColor(R.color.button_deselected));
     }
 
+    @Override
+    public void onPageScrolled(int i, float v, int i1) {
+
+    }
+
+    @Override
+    public void onPageSelected(int i) {
+        LogPrinter.i("wyt", "onPageSelected : " + i);
+        changeButtonSelectedStatus(i);
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int i) {
+
+    }
 }

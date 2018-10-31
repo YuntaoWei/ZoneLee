@@ -4,8 +4,9 @@ import android.content.Context;
 import android.os.Bundle;
 
 import com.eysale.zonelee.app.view.fragmentview.FollowFragmentDelegate;
+import com.eysale.zonelee.app.view.fragmentview.FoundFragmentDelegate;
 
-public class FoundFragment extends BaseFragment<FollowFragmentDelegate> {
+public class FoundFragment extends BaseFragment<FoundFragmentDelegate> {
 
     public FoundFragment() {
     }
@@ -34,7 +35,7 @@ public class FoundFragment extends BaseFragment<FollowFragmentDelegate> {
 
     @Override
     protected Class getDelegateClass() {
-        return FollowFragmentDelegate.class;
+        return FoundFragmentDelegate.class;
     }
 
     @Override

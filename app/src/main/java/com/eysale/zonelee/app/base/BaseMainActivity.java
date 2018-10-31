@@ -23,7 +23,12 @@ public class BaseMainActivity extends AppCompatActivity {
 
     protected void loginSuccess(LoginResponse u) {
         ((ZoneLeeApplication)getApplication()).registUser(u.getContent());
+        loginSuccess();
+    }
+
+    protected void loginSuccess() {
         StartUtils.startToMainPage(this);
+        finish();
     }
 
 }

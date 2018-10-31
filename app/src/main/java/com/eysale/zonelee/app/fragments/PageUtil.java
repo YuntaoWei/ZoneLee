@@ -9,11 +9,11 @@ import java.util.WeakHashMap;
 
 public class PageUtil {
 
-    public static final int INDEX_FOUND = 1;
-    public static final int INDEX_RANKING = 2;
-    public static final int INDEX_FOLLOW = 3;
-    public static final int INDEX_FRESH = 4;
-    public static final int INDEX_USER = 5;
+    public static final int INDEX_FOUND = 0;
+    public static final int INDEX_RANKING = 1;
+    public static final int INDEX_FOLLOW = 2;
+    public static final int INDEX_FRESH = 3;
+    public static final int INDEX_USER = 4;
 
     public static List<Fragment> getAllPages() {
         List<Fragment> fragments = new ArrayList<>();

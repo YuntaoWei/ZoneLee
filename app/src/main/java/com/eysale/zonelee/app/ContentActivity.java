@@ -13,7 +13,7 @@ import com.kymjs.frame.presenter.ActivityPresenter;
 
 import io.reactivex.functions.Consumer;
 
-public class ContentActivity extends ActivityPresenter<ContentActivityDelegate> implements View.OnClickListener, ViewPager.OnPageChangeListener {
+public class ContentActivity extends ActivityPresenter<ContentActivityDelegate> implements View.OnClickListener {
 
     @Override
     protected void bindEvenListener() {
@@ -24,8 +24,6 @@ public class ContentActivity extends ActivityPresenter<ContentActivityDelegate> 
                 R.id.btn_content_ranking,//排行
                 R.id.btn_content_fresh,//猎奇
                 R.id.btn_content_user);//我的
-
-        viewDelegate.addOnPageChangeListener(this);
     }
 
     @Override
@@ -37,47 +35,46 @@ public class ContentActivity extends ActivityPresenter<ContentActivityDelegate> 
     public void onClick(View v) {
         int index = -1;
         switch (v.getId()) {
-
             case R.id.toolbar_back:
                 loginOut();
                 break;
 
             case R.id.btn_content_found:
-                viewDelegate.changeButtonSelectedStatus(R.id.btn_content_found);
                 index = PageUtil.INDEX_FOUND;
                 break;
 
-            case R.id.btn_content_follow:
-                viewDelegate.changeButtonSelectedStatus(R.id.btn_content_follow);
+            case R.id.btn_content_ranking:
                 index = PageUtil.INDEX_RANKING;
                 break;
 
-            case R.id.btn_content_ranking:
-                viewDelegate.changeButtonSelectedStatus(R.id.btn_content_ranking);
+            case R.id.btn_content_follow:
                 index = PageUtil.INDEX_FOLLOW;
                 break;
 
             case R.id.btn_content_fresh:
-                viewDelegate.changeButtonSelectedStatus(R.id.btn_content_fresh);
                 index = PageUtil.INDEX_FRESH;
                 break;
 
             case R.id.btn_content_user:
-                viewDelegate.changeButtonSelectedStatus(R.id.btn_content_user);
                 index = PageUtil.INDEX_USER;
                 break;
 
         }
 
-        if(index != -1)
+        if(index != -1) {
             viewDelegate.changePageIndex(index);
+        }
 
-        Snackbar.make(v, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
+        /*Snackbar.make(v, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();*/
     }
 
     private void loginOut() {
         ZoneLeeApplication app = (ZoneLeeApplication) getApplication();
+        if(app.getCurrentUser() == null) {
+            logoutException();
+            return;
+        }
         RxUtils.loginOut(app.getCurrentUser().userId, new Consumer<BaseResponse>() {
             @Override
             public void accept(BaseResponse baseResponse) throws Exception {
@@ -100,20 +97,5 @@ public class ContentActivity extends ActivityPresenter<ContentActivityDelegate> 
         ZoneLeeApplication app = (ZoneLeeApplication) getApplication();
         app.unregistUser();
         finish();
-    }
-
-    @Override
-    public void onPageScrolled(int i, float v, int i1) {
-
-    }
-
-    @Override
-    public void onPageSelected(int i) {
-
-    }
-
-    @Override
-    public void onPageScrollStateChanged(int i) {
-
     }
 }
