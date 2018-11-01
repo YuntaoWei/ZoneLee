@@ -1,7 +1,5 @@
 package com.eysale.zonelee.response;
 
-import com.eysale.zonelee.bean.User;
-
 public class LoginResponse extends BaseResponse {
 
     public User content;

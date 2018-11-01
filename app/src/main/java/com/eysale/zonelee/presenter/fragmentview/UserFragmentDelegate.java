@@ -1,13 +1,13 @@
-package com.eysale.zonelee.app.view.fragmentview;
+package com.eysale.zonelee.presenter.fragmentview;
 
 import com.eysale.zonelee.R;
 import com.kymjs.frame.view.AppDelegate;
 
-public class FreshFragmentDelegate extends AppDelegate {
+public class UserFragmentDelegate extends AppDelegate {
 
     @Override
     public int getRootLayoutId() {
-        return R.layout.fragment_fresh;
+        return R.layout.fragment_user;
     }
 
     @Override

@@ -19,7 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * 网络访问封装类，用于调用retrofit + okhttp的接口{----${https://www.eysale.com/}-----}
  */
-class NetworkAccessUtil {
+public class NetworkAccessUtil {
 
     private static NetworkAccessUtil instance;
     private final String baseUrl = "****";
@@ -27,7 +27,7 @@ class NetworkAccessUtil {
 
     private NetworkAccessUtil() {}
 
-    static NetworkAccessUtil getInstance() {
+    public static NetworkAccessUtil getInstance() {
         if (instance == null){
             synchronized(NetworkAccessUtil.class){
                 if (instance == null)
@@ -52,7 +52,7 @@ class NetworkAccessUtil {
                 .baseUrl(baseUrl).build();
     }
 
-    BaseResponse startGetVerificationCode(String email) throws IOException {
+    public BaseResponse startGetVerificationCode(String email) throws IOException {
         checkClient();
 
         Retrofit retrofit = getBaseRetrofit();
@@ -63,7 +63,7 @@ class NetworkAccessUtil {
         return execute.body();
     }
 
-    RegistLoginUserResponse registUser(String email, String tel, String password, String verifyCode) throws IOException {
+    public RegistLoginUserResponse registUser(String email, String tel, String password, String verifyCode) throws IOException {
         checkClient();
 
         Retrofit retrofit = getBaseRetrofit();
@@ -77,7 +77,7 @@ class NetworkAccessUtil {
         return response.body();
     }
 
-    LoginResponse userLogin(String user, String password) throws IOException {
+    public LoginResponse userLogin(String user, String password) throws IOException {
         checkClient();
 
         Retrofit retrofit = getBaseRetrofit();
@@ -90,7 +90,7 @@ class NetworkAccessUtil {
         return execute.body();
     }
 
-    RegistLoginUserResponse userLogin1(String user, String password) throws IOException {
+    public RegistLoginUserResponse userLogin1(String user, String password) throws IOException {
         checkClient();
         Retrofit retrofit = getBaseRetrofit();
 
@@ -102,7 +102,7 @@ class NetworkAccessUtil {
         return null;
     }
 
-    BaseResponse userLoginOut(String userId) throws IOException {
+    public BaseResponse userLoginOut(String userId) throws IOException {
         checkClient();
         Retrofit retrofit = getBaseRetrofit();
 

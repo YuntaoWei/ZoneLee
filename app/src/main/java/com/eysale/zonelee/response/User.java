@@ -1,4 +1,4 @@
-package com.eysale.zonelee.bean;
+package com.eysale.zonelee.response;
 
 public class User {
 

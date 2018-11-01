@@ -1,5 +1,7 @@
 package com.eysale.zonelee.response;
 
+import java.lang.reflect.Type;
+
 public class BaseResponse {
 
     public String code;

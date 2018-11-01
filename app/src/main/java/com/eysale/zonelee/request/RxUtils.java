@@ -1,7 +1,5 @@
 package com.eysale.zonelee.request;
 
-import android.annotation.SuppressLint;
-
 import com.eysale.zonelee.response.BaseResponse;
 import com.eysale.zonelee.response.LoginResponse;
 import com.eysale.zonelee.response.RegistLoginUserResponse;
@@ -19,6 +17,12 @@ public class RxUtils {
 
     private static final String TAG = "RxUtils";
 
+    /**
+     * 用户登陆接口。
+     * @param name 用户名
+     * @param password 密码
+     * @param callBack 登陆结果回调
+     */
     public static void login(final String name, final String password, Consumer<LoginResponse> callBack) {
         Observable.create(new ObservableOnSubscribe<LoginResponse>() {
             @Override
@@ -33,6 +37,14 @@ public class RxUtils {
 
     }
 
+    /**
+     * 注册接口，注册一个新的账户
+     * @param email 邮箱，作为登陆账户，也可以作为找回密码的凭证
+     * @param tel 电话号码，保留接口，作用同邮箱
+     * @param password 账户密码
+     * @param verifyCode 验证码
+     * @param subscribe 注册结果回调
+     */
     public static void regist(final String email, final String tel, final String password, final String verifyCode, Observer subscribe) {
         Observable.create(new ObservableOnSubscribe<Object>() {
 
@@ -50,6 +62,12 @@ public class RxUtils {
                 .subscribe(subscribe);
     }
 
+    /**
+     * 获取验证码，以邮箱的形式
+     * @param email 接收验证码的邮箱
+     * @param success 验证码发送成功的回调
+     * @param error 发送失败的回调
+     */
     public static void getRegistVerificationCode(final String email, Consumer<BaseResponse> success, Consumer<Throwable> error) {
         Observable ob = Observable.create(new ObservableOnSubscribe<BaseResponse>() {
             @Override
@@ -72,6 +90,11 @@ public class RxUtils {
         ob.subscribe(success, error);
     }
 
+    /**
+     * 用户登出接口
+     * @param userId 用户ID，登陆完成后由服务器返回的一个特殊token
+     * @param callBack 登出结果回调
+     */
     public static void loginOut(final String userId, final Consumer<BaseResponse> callBack) {
         Observable.create(new ObservableOnSubscribe<BaseResponse>() {
             @Override
@@ -82,6 +105,11 @@ public class RxUtils {
         }).observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.newThread())
                 .subscribe(callBack);
+    }
+
+    public static void execute(ObservableOnSubscribe observableOnSubscribe, Observer ob) {
+        Observable.create(observableOnSubscribe)
+                .subscribe(ob);
     }
 
 }

@@ -2,7 +2,6 @@ package com.eysale.zonelee.app;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -13,12 +12,10 @@ import android.widget.Toast;
 
 import com.eysale.zonelee.R;
 import com.eysale.zonelee.app.base.BaseMainActivity;
-import com.eysale.zonelee.bean.User;
+import com.eysale.zonelee.request.RxUtils;
 import com.eysale.zonelee.response.LoginResponse;
 import com.eysale.zonelee.util.LogPrinter;
 import com.eysale.zonelee.util.NetWorkUtils;
-import com.eysale.zonelee.request.RxUtils;
-import com.eysale.zonelee.request.StartUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

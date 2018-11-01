@@ -5,11 +5,8 @@ import android.widget.Toast;
 
 import com.eysale.zonelee.R;
 import com.eysale.zonelee.app.ZoneLeeApplication;
-import com.eysale.zonelee.request.RxUtils;
-import com.eysale.zonelee.request.StartUtils;
+import com.eysale.zonelee.request.StarterUtils;
 import com.eysale.zonelee.response.LoginResponse;
-
-import io.reactivex.functions.Consumer;
 
 public class BaseMainActivity extends AppCompatActivity {
 
@@ -27,7 +24,7 @@ public class BaseMainActivity extends AppCompatActivity {
     }
 
     protected void loginSuccess() {
-        StartUtils.startToMainPage(this);
+        StarterUtils.startToMainPage(this);
         finish();
     }
 

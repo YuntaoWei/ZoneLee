@@ -1,15 +1,9 @@
 package com.eysale.zonelee.app.fragments;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
-import com.eysale.zonelee.R;
-import com.eysale.zonelee.app.view.fragmentview.UserFragmentDelegate;
+import com.eysale.zonelee.presenter.fragmentview.UserFragmentDelegate;
 
 public class UserFragment extends BaseFragment<UserFragmentDelegate> {
 

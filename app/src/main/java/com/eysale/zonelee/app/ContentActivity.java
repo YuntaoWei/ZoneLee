@@ -1,12 +1,10 @@
 package com.eysale.zonelee.app;
 
-import android.support.design.widget.Snackbar;
-import android.support.v4.view.ViewPager;
 import android.view.View;
 
 import com.eysale.zonelee.R;
 import com.eysale.zonelee.app.fragments.PageUtil;
-import com.eysale.zonelee.app.view.activityview.ContentActivityDelegate;
+import com.eysale.zonelee.presenter.activityview.ContentActivityDelegate;
 import com.eysale.zonelee.request.RxUtils;
 import com.eysale.zonelee.response.BaseResponse;
 import com.kymjs.frame.presenter.ActivityPresenter;
@@ -69,6 +67,18 @@ public class ContentActivity extends ActivityPresenter<ContentActivityDelegate> 
                 .setAction("Action", null).show();*/
     }
 
+    public void setActionBarDisplayOption(boolean back, boolean title) {
+        viewDelegate.getContentActivityToolbar().setDisplayOptions(back, title);
+    }
+
+    public void setTitle(String s) {
+        viewDelegate.getContentActivityToolbar().setTitle(s);
+    }
+
+    public void setTitle(int res) {
+        setTitle(getString(res));
+    }
+
     private void loginOut() {
         ZoneLeeApplication app = (ZoneLeeApplication) getApplication();
         if(app.getCurrentUser() == null) {
@@ -98,4 +108,5 @@ public class ContentActivity extends ActivityPresenter<ContentActivityDelegate> 
         app.unregistUser();
         finish();
     }
+
 }

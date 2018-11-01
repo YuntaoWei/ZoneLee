@@ -3,8 +3,10 @@ package com.eysale.zonelee.app.fragments;
 import android.content.Context;
 import android.os.Bundle;
 
-import com.eysale.zonelee.app.view.fragmentview.FollowFragmentDelegate;
-import com.eysale.zonelee.app.view.fragmentview.FoundFragmentDelegate;
+import com.eysale.zonelee.R;
+import com.eysale.zonelee.app.ContentActivity;
+import com.eysale.zonelee.presenter.fragmentview.FoundFragmentDelegate;
+import com.eysale.zonelee.util.LogPrinter;
 
 public class FoundFragment extends BaseFragment<FoundFragmentDelegate> {
 
@@ -24,8 +26,14 @@ public class FoundFragment extends BaseFragment<FoundFragmentDelegate> {
     }
 
     @Override
-    protected void onFragmentVisibleChange(boolean visible) {
+    protected void onFragmentFirstVisible() {
+        LogPrinter.i("ttt", "FoundFragment onFragmentFirstVisible.");
+        ((FoundFragmentDelegate)viewDelegate).startLoad();
+    }
 
+    @Override
+    protected void onFragmentVisibleChange(boolean visible) {
+        LogPrinter.i("ttt", "FoundFragment onFragmentVisibleChange : " + visible);
     }
 
     @Override
@@ -41,6 +49,8 @@ public class FoundFragment extends BaseFragment<FoundFragmentDelegate> {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        ((ContentActivity)context).setActionBarDisplayOption(false, true);
+        ((ContentActivity)context).setTitle(R.string.bottombar_home);
     }
 
     @Override

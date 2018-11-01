@@ -3,7 +3,7 @@ package com.eysale.zonelee.app.fragments;
 import android.content.Context;
 import android.os.Bundle;
 
-import com.eysale.zonelee.app.view.fragmentview.FollowFragmentDelegate;
+import com.eysale.zonelee.presenter.fragmentview.FollowFragmentDelegate;
 
 public class FollowFragment extends BaseFragment<FollowFragmentDelegate> {
 

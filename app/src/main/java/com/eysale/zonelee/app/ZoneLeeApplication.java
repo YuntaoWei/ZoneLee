@@ -1,13 +1,8 @@
 package com.eysale.zonelee.app;
 
 import android.app.Application;
-import android.content.res.Configuration;
-import android.content.res.Resources;
-import android.util.DisplayMetrics;
 
-import com.eysale.zonelee.bean.User;
-
-import java.util.Locale;
+import com.eysale.zonelee.response.User;
 
 public class ZoneLeeApplication extends Application {
 

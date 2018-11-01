@@ -1,8 +1,7 @@
-package com.eysale.zonelee.app.view.activityview;
+package com.eysale.zonelee.presenter.activityview;
 
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
