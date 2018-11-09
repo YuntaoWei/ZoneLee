@@ -9,8 +9,6 @@ import android.widget.TextView;
 import com.eysale.zonelee.R;
 import com.eysale.zonelee.bean.FoundPageDetailData;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.List;
 

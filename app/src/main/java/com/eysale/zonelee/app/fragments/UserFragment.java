@@ -2,10 +2,14 @@ package com.eysale.zonelee.app.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.View;
 
+import com.eysale.zonelee.R;
 import com.eysale.zonelee.presenter.fragmentview.UserFragmentDelegate;
 
-public class UserFragment extends BaseFragment<UserFragmentDelegate> {
+import butterknife.OnClick;
+
+public class UserFragment extends BaseFragment<UserFragmentDelegate> implements View.OnClickListener {
 
     public UserFragment() {
     }
@@ -16,6 +20,17 @@ public class UserFragment extends BaseFragment<UserFragmentDelegate> {
         fragment.setArguments(args);
         return fragment;
     }
+
+    private UserFragmentDelegate getDelegate() {
+        return (UserFragmentDelegate)viewDelegate;
+    }
+
+    @Override
+    protected void bindEvenListener() {
+        getDelegate().setOnClickListener(this, R.id.bt_add_tag);
+    }
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,5 +55,14 @@ public class UserFragment extends BaseFragment<UserFragmentDelegate> {
     @Override
     public void onDetach() {
         super.onDetach();
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.bt_add_tag:
+                getDelegate().onAddTagButtonClick();
+                break;
+        }
     }
 }

@@ -24,6 +24,7 @@
         <activity android:name=".app.RegistActivity" />
         <activity
             android:name=".app.ContentActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"
             android:label="@string/title_activity_content"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
