@@ -23,25 +23,9 @@ public class UserFragmentDelegate extends AppDelegate {
 
     @Override
     public void initWidget() {
-        mTagContainerLayout = get(R.id.tag_view);
-        List<String> tag = new ArrayList<>();
-        tag.add("Music");
-        tag.add("Movie");
-        tag.add("Other");
-        mTagContainerLayout.setTags(tag);
     }
 
     public void onAddTagButtonClick() {
-        String tag = ((EditText)get(R.id.et_tag)).getText().toString();
-        if(!TextUtils.isEmpty(tag)) {
-            List<String> tags = mTagContainerLayout.getTags();
-            if(!tags.contains(tag)) {
-                mTagContainerLayout.addTag(tag);
-                ((EditText)get(R.id.et_tag)).setText("");
-            } else {
-                Toast.makeText(getActivity().getApplication(), "标签已存在", Toast.LENGTH_SHORT).show();
-            }
-        }
     }
 
 }

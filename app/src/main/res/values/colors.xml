@@ -2,8 +2,13 @@
 <resources>
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorAccent">#3A3A3A</color>
 
     <color name="button_selected">#1296DB</color>
     <color name="button_deselected">#2C2C2C</color>
+
+    <color name="colorBlackAlpha12">#1E000000</color>
+    <color name="colorBlackAlpha26">#42000000</color>
+    <color name="colorBlackAlpha54">#89000000</color>
+    <color name="colorBlackAlpha87">#DD000000</color>
 </resources>

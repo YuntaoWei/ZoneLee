@@ -19,6 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/bottombar_height"
         app:layout_constraintTop_toBottomOf="@id/contentPager"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <Button
@@ -57,7 +58,7 @@
             android:layout_height="match_parent"
             android:text="@string/bottombar_fresh"
             android:textColor="@color/button_deselected"
-            android:drawableTop="@mipmap/ic_fresh_deselected"
+            android:drawableTop="@mipmap/ic_follow_deselected"
             android:background="@null"
             android:layout_weight="1" />
 

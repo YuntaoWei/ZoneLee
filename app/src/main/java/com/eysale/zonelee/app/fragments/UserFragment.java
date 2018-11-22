@@ -1,13 +1,17 @@
 package com.eysale.zonelee.app.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 
 import com.eysale.zonelee.R;
+import com.eysale.zonelee.app.PublishActivity;
 import com.eysale.zonelee.presenter.fragmentview.UserFragmentDelegate;
-
-import butterknife.OnClick;
+import com.eysale.zonelee.util.TagUtil;
+import com.gitonway.lee.niftymodaldialogeffects.lib.Effectstype;
+import com.gitonway.lee.niftymodaldialogeffects.lib.NiftyDialogBuilder;
 
 public class UserFragment extends BaseFragment<UserFragmentDelegate> implements View.OnClickListener {
 
@@ -22,14 +26,13 @@ public class UserFragment extends BaseFragment<UserFragmentDelegate> implements 
     }
 
     private UserFragmentDelegate getDelegate() {
-        return (UserFragmentDelegate)viewDelegate;
+        return (UserFragmentDelegate) viewDelegate;
     }
 
     @Override
     protected void bindEvenListener() {
-        getDelegate().setOnClickListener(this, R.id.bt_add_tag);
+        getDelegate().setOnClickListener(this, R.id.btn_publish);
     }
-
 
 
     @Override
@@ -59,10 +62,56 @@ public class UserFragment extends BaseFragment<UserFragmentDelegate> implements 
 
     @Override
     public void onClick(View v) {
+
+        int publishTag = -1;
         switch (v.getId()) {
-            case R.id.bt_add_tag:
-                getDelegate().onAddTagButtonClick();
+
+            case R.id.btn_publish:
+                showPublishDialog();
+                return;
+
+            case R.id.btn_tag_movie:
+                publishTag = TagUtil.BASE_TAG_MOVIE;
+                break;
+
+            case R.id.btn_tag_music:
+                publishTag = TagUtil.BASE_TAG_MUSIC;
+                break;
+
+            case R.id.btn_tag_novel:
+                publishTag = TagUtil.BASE_TAG_NOVEL;
                 break;
         }
+        Intent intent = new Intent(this.getContext(), PublishActivity.class);
+        intent.putExtra(TagUtil.PUBLISH_TAG, publishTag);
+        this.getContext().startActivity(intent);
+        dialogBuilder.dismiss();
+    }
+
+    private View customView = null;
+    private NiftyDialogBuilder dialogBuilder;
+    private void showPublishDialog() {
+        if(dialogBuilder == null) {
+            dialogBuilder = NiftyDialogBuilder.getInstance(this.getContext());
+            dialogBuilder.withMessage(null)
+                    .withTitle(null)
+                    .withDialogColor("#FFFFFAFA");
+        }
+
+        if(customView == null) {
+            customView = LayoutInflater.from(this.getContext()).inflate(R.layout.publish_tag_layout, null);
+            customView.findViewById(R.id.btn_tag_movie).setOnClickListener(this);
+            customView.findViewById(R.id.btn_tag_music).setOnClickListener(this);
+            customView.findViewById(R.id.btn_tag_novel).setOnClickListener(this);
+            dialogBuilder.setCustomView(customView, this.getContext());
+        }
+
+        dialogBuilder.show();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        customView = null;
     }
 }

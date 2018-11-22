@@ -68,7 +68,7 @@ public class ContentActivity extends ActivityPresenter<ContentActivityDelegate> 
     }
 
     public void setActionBarDisplayOption(boolean back, boolean title) {
-        viewDelegate.getContentActivityToolbar().setDisplayOptions(back, title);
+        viewDelegate.getContentActivityToolbar().setDisplayOptions(back, title, false);
     }
 
     public void setTitle(String s) {

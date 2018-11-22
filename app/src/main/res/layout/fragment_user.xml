@@ -7,34 +7,10 @@
     android:layout_height="match_parent"
     tools:context=".app.fragments.UserFragment">
 
-    <co.lujun.androidtagview.TagContainerLayout
-        android:id="@+id/tag_view"
+    <Button
+        android:id="@+id/btn_publish"
+        android:text="发布"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="0dp"
-        android:padding="10dp"
-        app:container_enable_drag="false"
-        app:horizontal_interval="10dp"
-        app:vertical_interval="10dp"
-        app:tag_clickable="true"
-        app:tag_theme="pure_teal" />
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <EditText
-            android:id="@+id/et_tag"
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <Button
-            android:id="@+id/bt_add_tag"
-            android:text="添加标签"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

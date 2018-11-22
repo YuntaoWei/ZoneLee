@@ -24,9 +24,12 @@
         <activity android:name=".app.RegistActivity" />
         <activity
             android:name=".app.ContentActivity"
-            android:windowSoftInputMode="adjustPan|stateHidden"
             android:label="@string/title_activity_content"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".app.PublishActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

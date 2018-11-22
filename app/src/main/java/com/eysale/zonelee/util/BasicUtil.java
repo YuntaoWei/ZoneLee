@@ -1,6 +1,15 @@
 package com.eysale.zonelee.util;
 
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Point;
+import android.hardware.display.DisplayManager;
 import android.text.TextUtils;
+import android.util.Log;
+import android.util.Size;
+import android.view.Display;
+import android.view.WindowManager;
 
 import java.util.regex.Pattern;
 
@@ -29,4 +38,14 @@ public class BasicUtil {
         }
         return Pattern.matches(REGEX_EMAIL1, email);
     }
+
+    public static Point getScreenSize(Context ctx) {
+        WindowManager wm = (WindowManager) ctx.getSystemService(Context.WINDOW_SERVICE);
+        Display display = wm.getDefaultDisplay();
+        Point size = new Point();
+        display.getRealSize(size);
+        Log.i("tttt", "getScreenSize : " + size);
+        return size;
+    }
+
 }

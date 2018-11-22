@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toolbar"
+    app:contentInsetEnd="10dp"
+    app:contentInsetStart="10dp"
+    app:popupTheme="@style/AppTheme.PopupOverlay"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:background="?attr/colorPrimary">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/toolbar_back"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@mipmap/ic_back" />
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:text="测试标题"
+            android:gravity="center"
+            android:textSize="@dimen/midd_font_size"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/toolbar_right_button"
+            android:background="@null"
+            android:text="发布"
+            android:textSize="@dimen/midd_font_size"
+            android:visibility="invisible"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</android.support.v7.widget.Toolbar>

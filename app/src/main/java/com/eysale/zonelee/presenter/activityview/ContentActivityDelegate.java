@@ -10,7 +10,7 @@ import android.widget.Button;
 import com.eysale.zonelee.R;
 import com.eysale.zonelee.app.Adapter.ContentViewPageAdapter;
 import com.eysale.zonelee.app.fragments.PageUtil;
-import com.eysale.zonelee.app.ui.ContentActivityToolbar;
+import com.eysale.zonelee.app.ui.BaseActivityToolbar;
 import com.eysale.zonelee.util.LogPrinter;
 import com.kymjs.frame.view.AppDelegate;
 
@@ -45,11 +45,11 @@ public class ContentActivityDelegate extends AppDelegate implements ViewPager.On
     }
 
     public void changePageIndex(int index) {
-        contentViewPager.setCurrentItem(index);
+        contentViewPager.setCurrentItem(index, false);
     }
 
-    public ContentActivityToolbar getContentActivityToolbar() {
-        return ContentActivityToolbar.getToolBar(getToolbar());
+    public BaseActivityToolbar getContentActivityToolbar() {
+        return BaseActivityToolbar.getToolBar(getToolbar());
     }
 
     private void changeButtonSelectedStatus(int page) {
