@@ -93,7 +93,6 @@ public class MainActivity extends BaseMainActivity implements View.OnClickListen
             case R.id.login_bt_regist:
                 startActivity(new Intent(this, RegistActivity.class));
                 break;
-
         }
     }
 

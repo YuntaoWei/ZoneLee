@@ -10,6 +10,7 @@ import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -34,6 +35,8 @@ import com.kymjs.frame.presenter.ActivityPresenter;
 
 public class PublishActivity extends ActivityPresenter<PublishActivityDelegate> implements View.OnClickListener {
 
+    private Uri tmpUri;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +45,7 @@ public class PublishActivity extends ActivityPresenter<PublishActivityDelegate> 
 
     private void initBaseTag() {
         int baseTag = getIntent().getIntExtra(TagUtil.PUBLISH_TAG, -1);
-        if(baseTag == -1) {
+        if (baseTag == -1) {
             Snackbar.make(viewDelegate.getToolbar(), "发布功能异常：tag -1", Snackbar.LENGTH_LONG).show();
             finish();
             return;
@@ -69,15 +72,15 @@ public class PublishActivity extends ActivityPresenter<PublishActivityDelegate> 
                 break;
 
             case R.id.button2:
-                if(etTag != null) {
+                if (etTag != null) {
                     String tags = etTag.getText().toString();
-                    if(!TextUtils.isEmpty(tags)) {
+                    if (!TextUtils.isEmpty(tags)) {
                         String[] tag = tags.split("，");
-                        if(tag == null) {
+                        if (tag == null) {
                             viewDelegate.addTag(tags);
                         } else {
                             for (String t : tag
-                                 ) {
+                                    ) {
                                 viewDelegate.addTag(t);
                             }
                         }
@@ -87,28 +90,41 @@ public class PublishActivity extends ActivityPresenter<PublishActivityDelegate> 
                 break;
 
             case R.id.btn_get_photo:
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setType("image/*");
-                startActivityForResult(intent, 0x123);
+                Intent getIntent = new Intent(Intent.ACTION_PICK);
+                getIntent.setType("image/*");
+                startActivityForResult(getIntent, 0x123);
                 break;
 
             case R.id.btn_take_photo:
-
+                Intent takeIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                tmpUri = BasicUtil.getTmpPictureUri(this);
+                if (tmpUri != null) {
+                    takeIntent.putExtra(MediaStore.EXTRA_OUTPUT, tmpUri);
+                }
+                takeIntent.putExtra(MediaStore.Images.Media.ORIENTATION, 0);
+                startActivityForResult(takeIntent, 0x124);
                 break;
         }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        Uri u = data.getData();
-        if(null != u)
-            viewDelegate.insertBitmap(u, ContentUris.parseId(u));
+        if (requestCode == 0x123) {
+            tmpUri = data.getData();
+            if (null != tmpUri)
+                viewDelegate.insertBitmap(tmpUri, ContentUris.parseId(tmpUri));
+        } else if (requestCode == 0x124) {
+            if (null != tmpUri)
+                viewDelegate.insertBitmap(tmpUri, System.currentTimeMillis() / 1000);
+            Log.i("ttt", "got picture from camera : " + tmpUri);
+        }
     }
 
     private NiftyDialogBuilder dialogBuilder;
     private EditText etTag;
+
     public void showAddTagDialog() {
-        if(dialogBuilder == null) {
+        if (dialogBuilder == null) {
             dialogBuilder = NiftyDialogBuilder.getInstance(this);
             dialogBuilder.withMessage(null)
                     .withTitle("添加标签")
@@ -116,9 +132,9 @@ public class PublishActivity extends ActivityPresenter<PublishActivityDelegate> 
                     .withDialogColor("#FFFFFAFA");
         }
 
-        ViewHookUtils.hookDialogTitleColor(dialogBuilder,Color.argb(0xFF, 0xFF, 0xFA, 0xFA));
+        ViewHookUtils.hookDialogTitleColor(dialogBuilder, Color.argb(0xFF, 0xFF, 0xFA, 0xFA));
 
-        if(etTag == null) {
+        if (etTag == null) {
             etTag = new EditText(this);
             etTag.setHint("输入标签，多个用逗号隔开");
             etTag.setMaxLines(1);
@@ -143,7 +159,7 @@ public class PublishActivity extends ActivityPresenter<PublishActivityDelegate> 
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         viewDelegate.onActivityDestory();
+        super.onDestroy();
     }
 }

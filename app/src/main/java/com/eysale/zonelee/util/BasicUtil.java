@@ -3,14 +3,19 @@ package com.eysale.zonelee.util;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Matrix;
 import android.graphics.Point;
 import android.hardware.display.DisplayManager;
+import android.net.Uri;
+import android.os.Environment;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Size;
 import android.view.Display;
 import android.view.WindowManager;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.regex.Pattern;
 
 public class BasicUtil {
@@ -32,6 +37,10 @@ public class BasicUtil {
 
     public static final String REGEX_IP_ADDR = "(25[0-5]|2[0-4]\\d|[0-1]\\d{2}|[1-9]?\\d)";
 
+    public static final String APP_DIR = "ZoneLee";
+
+    public static final String PUBLIC_IMAGE_NAME = "zo-";
+
     public static boolean emailFormatIllegal(String email) {
         if(TextUtils.isEmpty(email)) {
             return false;
@@ -46,6 +55,35 @@ public class BasicUtil {
         display.getRealSize(size);
         Log.i("tttt", "getScreenSize : " + size);
         return size;
+    }
+
+    public static Uri getTmpPictureUri(Context ctx) {
+        String dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getPath() + File.separator + APP_DIR;
+        File parent = new File(dir);
+        if(!parent.exists())
+            parent.mkdirs();
+
+        File f = new File(parent, "tmp_" + System.currentTimeMillis() + ".jpg");
+        try {
+            f.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return Uri.fromFile(f);
+    }
+
+    public static int getScreenWidth(Context ctx) {
+        WindowManager wm = (WindowManager) ctx.getSystemService(Context.WINDOW_SERVICE);
+        Point p = new Point();
+        wm.getDefaultDisplay().getSize(p);
+        return p.x;
+    }
+
+    public static Bitmap scaleBitmap(Bitmap bm, float scale) {
+        int scaleWidth = (int) (bm.getWidth() * scale);
+        int scaleHeight = (int) (bm.getHeight() * scale);
+        return Bitmap.createScaledBitmap(bm, scaleWidth, scaleHeight, false);
     }
 
 }

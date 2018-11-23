@@ -1,12 +1,10 @@
 package com.eysale.zonelee.app.widget;
 
-import android.util.Log;
 import android.widget.LinearLayout;
 
 import com.gitonway.lee.niftymodaldialogeffects.lib.NiftyDialogBuilder;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 
 public class ViewHookUtils {
 

@@ -2,6 +2,7 @@ package com.eysale.zonelee.presenter.activityview;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.net.Uri;
 import android.support.annotation.NonNull;
@@ -9,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +19,7 @@ import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
+import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.eysale.zonelee.R;
@@ -39,6 +42,7 @@ public class PublishActivityDelegate extends AppDelegate implements BaseActivity
     MyEditText etContent;
     BaseActivityToolbar baseToolBar;
     RequestManager requestManager;
+    int screenWidth;
 
     @Override
     public int getRootLayoutId() {
@@ -57,7 +61,8 @@ public class PublishActivityDelegate extends AppDelegate implements BaseActivity
 
         baseToolBar = BaseActivityToolbar.getToolBar(getToolbar());
         baseToolBar.setOnButtonClickListener(this);
-        setTitle("发布");
+        baseToolBar.setDisplayOptions(true, true, true);
+        setTitle("");
         tagView.setOnTagClickListener(new TagView.OnTagClickListener() {
             @Override
             public void onTagClick(int position, String text) {
@@ -80,6 +85,7 @@ public class PublishActivityDelegate extends AppDelegate implements BaseActivity
         });
 
         requestManager = Glide.with(getActivity());
+        screenWidth = BasicUtil.getScreenWidth(getActivity());
     }
 
     public void setBaseTag(String baseTag) {
@@ -102,7 +108,11 @@ public class PublishActivityDelegate extends AppDelegate implements BaseActivity
         requestManager.asBitmap().load(u).into(new SimpleTarget<Bitmap>() {
             @Override
             public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                etContent.insertDrawable(resource, "img:" + imgName);
+                if(resource.getWidth() > screenWidth) {
+                    float scale = screenWidth * 1.0f / resource.getWidth() * 1.0f;
+                    resource = BasicUtil.scaleBitmap(resource, scale);
+                }
+                etContent.insertDrawable(resource, "zo-img:" + imgName);
             }
         });
     }

@@ -53,9 +53,14 @@ public class BaseActivityToolbar {
             btnBack.setVisibility(View.INVISIBLE);
 
         if (showTitle)
-            tvTitle.setVisibility(View.INVISIBLE);
+            tvTitle.setVisibility(View.VISIBLE);
         else
             tvTitle.setVisibility(View.INVISIBLE);
+
+        if(showRightBar)
+            rightButton.setVisibility(View.VISIBLE);
+        else
+            rightButton.setVisibility(View.INVISIBLE);
     }
 
     public void setRightBarText(String text) {
