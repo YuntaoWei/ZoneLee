@@ -1,4 +1,4 @@
-package com.eysale.zonelee.response;
+package com.eysale.zonelee.http.response;
 
 public class LoginResponse extends BaseResponse {
 

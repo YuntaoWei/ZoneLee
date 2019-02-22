@@ -1,15 +1,16 @@
-package com.eysale.zonelee.request;
+package com.eysale.zonelee.http.request;
 
-import com.eysale.zonelee.response.BaseResponse;
-import com.eysale.zonelee.response.LoginResponse;
-import com.eysale.zonelee.response.RegistLoginUserResponse;
+import com.eysale.zonelee.http.response.BaseResponse;
+import com.eysale.zonelee.http.response.LoginResponse;
+import com.eysale.zonelee.http.response.RegistLoginUserResponse;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 
-public interface RetrofitInterface {
+public interface UserModelAPI {
 
     @GET("user/sendMail")
     Call<BaseResponse> registGotVerificationCode(@Query("email") String email);
@@ -26,5 +27,8 @@ public interface RetrofitInterface {
 
     @GET("user/loginout")
     Call<BaseResponse> userLoginOut(@Query("userId") String userId);
+
+    @POST("article/upload")
+    Call<String> uploadPicture();
 
 }

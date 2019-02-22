@@ -1,6 +1,4 @@
-package com.eysale.zonelee.response;
-
-import java.lang.reflect.Type;
+package com.eysale.zonelee.http.response;
 
 public class BaseResponse {
 

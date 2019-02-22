@@ -1,4 +1,4 @@
-package com.eysale.zonelee.request;
+package com.eysale.zonelee.http.request;
 
 import android.content.Context;
 import android.content.Intent;

@@ -12,8 +12,9 @@ import android.widget.Toast;
 
 import com.eysale.zonelee.R;
 import com.eysale.zonelee.app.base.BaseMainActivity;
-import com.eysale.zonelee.request.RxUtils;
-import com.eysale.zonelee.response.LoginResponse;
+import com.eysale.zonelee.http.request.Config;
+import com.eysale.zonelee.http.request.RxUtils;
+import com.eysale.zonelee.http.response.LoginResponse;
 import com.eysale.zonelee.util.LogPrinter;
 import com.eysale.zonelee.util.NetWorkUtils;
 
@@ -60,7 +61,7 @@ public class MainActivity extends BaseMainActivity implements View.OnClickListen
         switch (v.getId()) {
 
             case R.id.login_bt_login:
-                if(true) {
+                if(Config.DEBUG_USER_MODEL) {
                     loginSuccess();
                     return;
                 }

@@ -1,8 +1,8 @@
-package com.eysale.zonelee.request;
+package com.eysale.zonelee.http.request;
 
-import com.eysale.zonelee.response.BaseResponse;
-import com.eysale.zonelee.response.LoginResponse;
-import com.eysale.zonelee.response.RegistLoginUserResponse;
+import com.eysale.zonelee.http.response.BaseResponse;
+import com.eysale.zonelee.http.response.LoginResponse;
+import com.eysale.zonelee.http.response.RegistLoginUserResponse;
 import com.eysale.zonelee.util.LogPrinter;
 
 import io.reactivex.Observable;
@@ -27,7 +27,7 @@ public class RxUtils {
         Observable.create(new ObservableOnSubscribe<LoginResponse>() {
             @Override
             public void subscribe(ObservableEmitter<LoginResponse> emitter) throws Exception {
-                LoginResponse user = NetworkAccessUtil.getInstance().userLogin(name, password);
+                LoginResponse user = UserModelUtil.getInstance().userLogin(name, password);
                 LogPrinter.i("ttt", "LoginResponse : " + user);
                 emitter.onNext(user);
             }
@@ -50,7 +50,7 @@ public class RxUtils {
 
             @Override
             public void subscribe(ObservableEmitter<Object> emitter) throws Exception {
-                RegistLoginUserResponse rb = NetworkAccessUtil.getInstance().registUser(email, tel, password, verifyCode);
+                RegistLoginUserResponse rb = UserModelUtil.getInstance().registUser(email, tel, password, verifyCode);
                 if (rb == null || !rb.code.equals("success")) {
                     emitter.onError(new Throwable(rb == null ? "" : rb.message));
                 }
@@ -72,7 +72,7 @@ public class RxUtils {
         Observable ob = Observable.create(new ObservableOnSubscribe<BaseResponse>() {
             @Override
             public void subscribe(ObservableEmitter<BaseResponse> emitter) throws Exception {
-                BaseResponse rp = NetworkAccessUtil.getInstance().startGetVerificationCode(email);
+                BaseResponse rp = UserModelUtil.getInstance().startGetVerificationCode(email);
                 LogPrinter.d(TAG, "getRegistVerificationCode result : " + rp);
                 if (null == rp) {
                     emitter.onError(new Throwable("Server or network error!"));
@@ -99,7 +99,7 @@ public class RxUtils {
         Observable.create(new ObservableOnSubscribe<BaseResponse>() {
             @Override
             public void subscribe(ObservableEmitter<BaseResponse> emitter) throws Exception {
-                BaseResponse response = NetworkAccessUtil.getInstance().userLoginOut(userId);
+                BaseResponse response = UserModelUtil.getInstance().userLoginOut(userId);
                 callBack.accept(response);
             }
         }).observeOn(AndroidSchedulers.mainThread())
