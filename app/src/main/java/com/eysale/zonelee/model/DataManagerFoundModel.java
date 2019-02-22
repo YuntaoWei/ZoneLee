@@ -1,12 +1,10 @@
 package com.eysale.zonelee.model;
 
 import com.eysale.zonelee.bean.FoundDatas;
-import com.eysale.zonelee.bean.FoundPageDetailData;
-import com.eysale.zonelee.request.RxUtils;
+import com.eysale.zonelee.http.request.RxUtils;
 import com.eysale.zonelee.util.LogPrinter;
 import com.eysale.zonelee.util.NetWorkUtils;
 
-import java.util.List;
 import java.util.concurrent.Semaphore;
 
 import io.reactivex.ObservableEmitter;

@@ -1,5 +1,7 @@
 package com.eysale.zonelee.http.request;
 
+import com.eysale.zonelee.http.RetrofitManager;
+
 import okhttp3.OkHttpClient;
 
 /**
@@ -8,7 +10,6 @@ import okhttp3.OkHttpClient;
 public class ArticleModelUtil {
 
     private static ArticleModelUtil instance;
-    private OkHttpClient mClient;
 
     private ArticleModelUtil() {}
 
@@ -20,6 +21,12 @@ public class ArticleModelUtil {
             }
         }
         return instance;
+    }
+
+    public void uploadPicture() {
+        UploadHelper.UploadHelperHolder.INSTANCE.reset().addPostParameterFile("", null);
+        ArticleModeApi articleModeApi = (ArticleModeApi)RetrofitManager.getInstance().getApi(ArticleModeApi.class);
+
     }
 
 }
